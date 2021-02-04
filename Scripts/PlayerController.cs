@@ -6,9 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     public float Speed = 5f;
     public Rigidbody rb;
+    public GameObject speedPowerup;
+    private float speedTimer = 0f;
     private float sideBound = 10;
     private float topBound = 9;
-
+    
     // Start is called before the first frame update
     void Start()
     {  
@@ -22,20 +24,20 @@ public class PlayerController : MonoBehaviour
         //Movement Code
         if (Input.GetKey(KeyCode.W))
         {
-            rb.AddForce(transform.forward * Speed);
+            rb.AddForce(transform.forward * Speed * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            rb.AddForce(transform.forward * -Speed);
+            rb.AddForce(transform.forward * -Speed * Time.deltaTime) ;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            rb.AddForce(transform.right * -Speed);
+            rb.AddForce(transform.right * -Speed * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            rb.AddForce(transform.right * Speed);
+            rb.AddForce(transform.right * Speed * Time.deltaTime);
         }
 
         //Stop movement when near the edges of the screen
@@ -55,5 +57,21 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector3(1, 0, 0);
         }
+        //counts down the speedtimer
+        speedTimer -= 0.01f;
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        //detects collision with Speed powerup, adds speed for 5 seconds
+        if (collision.gameObject.name == "SpeedPowerup" && speedTimer <= 0)
+        {
+            speedTimer = 5f;
+            Speed = 600f;
+        }
+        else if (speedTimer <= 0f)
+        {
+            Speed = 300f;
+        }
+
     }
 }
