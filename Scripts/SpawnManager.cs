@@ -20,7 +20,7 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
 
-
+       
 
 
 
@@ -29,8 +29,8 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnCollectible()
     {
-        Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, spawnPosZ);
-        Instantiate(Collectible, spawnPos, transform.rotation);
+        Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, Random.Range(-spawnPosZ, spawnPosZ));
+ 
 
     }
 }
