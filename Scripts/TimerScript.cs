@@ -21,6 +21,7 @@ public class TimerScript : MonoBehaviour
         {
             timeLeft -= 0.01f;
             Timer.text = " " + (Mathf.Round(timeLeft));
+            Debug.Log(timeLeft);
         }
         //if time reaches 0, pause game and display score in console
         if (timeLeft <= 0f)

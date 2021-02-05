@@ -39,7 +39,8 @@ public class DestroyCollectible : MonoBehaviour
     void SpawnCollectible()
     {
         Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, Random.Range(-spawnPosZ, spawnPosZ));
-        Instantiate(Collectible, spawnPos, transform.rotation);
+        Vector3 spawnRotation = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, Random.Range(-spawnPosZ, spawnPosZ));
+        Instantiate(Collectible, spawnPos, Quaternion.Euler(0, Random.Range(0, 360), 0));
 
     }
 }
