@@ -59,18 +59,22 @@ public class PlayerController : MonoBehaviour
         }
         //counts down the speedtimer
         speedTimer -= 0.01f;
+
+        if (speedTimer < 0f)
+        {
+            Speed = 300f;
+        }
+        else if (speedTimer > 0f)
+        {
+            Speed = 600f;
+        }
     }
     void OnCollisionEnter(Collision collision)
     {
         //detects collision with Speed powerup, adds speed for 5 seconds
-        if (collision.gameObject.name == "SpeedPowerup" && speedTimer <= 0)
+        if (collision.gameObject.name == "SpeedPowerup")
         {
             speedTimer = 5f;
-            Speed = 600f;
-        }
-        else if (speedTimer <= 0f)
-        {
-            Speed = 300f;
         }
 
     }
